@@ -5,7 +5,7 @@
 
 module load python
 
-set -e
+#set -e IDBA segfaults a lot
 set -u
 
 software=/home/adurvasu/software

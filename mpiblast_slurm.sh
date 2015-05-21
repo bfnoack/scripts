@@ -34,4 +34,4 @@ Local=/group/mahergrp/data/refseq
 # using default folder (/gpfs/scratch/shared/mpiblast)
 SLURM_NPROCS=$(( $SLURM_NNODES * $SLURM_NTASKS_PER_NODE ))
 
-mpirun -n $SLURM_NPROCS mpiblast -p blastx -d viral.1.protein.faa -i $1 -o $1.out.3 -b 1 -m 7
+mpirun -n $SLURM_NPROCS mpiblast -p blastx -d viral.1.protein.faa -i $1 -o $1.xml -b 1 -m 7
