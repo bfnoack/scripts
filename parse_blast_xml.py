@@ -30,7 +30,6 @@ for res in blast_records:
 
 path = os.path.dirname(os.path.abspath(argv[1]))
 
-
 with open(path+"/contig.summary.tsv", "w") as f:
     writer = csv.writer(f, delimiter="\t")
     for l in output_list:

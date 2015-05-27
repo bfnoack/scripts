@@ -18,24 +18,23 @@ with open(argv[1]) as f:
         contig_length = line[3]
         read_count = line[4]
         hit_def = line[6]
+        e_val = line[9]
         try:
             # some fields have an n/a here so we need to avoid crashing if that happens
             pattern = r'.\[(.*?)\].'
             hit_sub = re.search(pattern, hit_def).group(1)
         except AttributeError:
             hit_sub = hit_def
-        results.append([contig_name,contig_length, read_count, hit_sub])
+        results.append([contig_name,contig_length, read_count, hit_sub, e_val])
 
 path = os.path.dirname(os.path.abspath(argv[1]))
 filename = ntpath.basename(argv[1])
 
-if "--sort-virus" in argv:
-    # sort viruses by name if the option is supplied
-    results = sorted(results, key=operator.itemgetter(3))
+results = sorted(results, key=operator.itemgetter(3))
 
 with open(path+"/summary."+filename, "w") as f:
     writer = csv.writer(f)
-    writer.writerow(["Contig Name", "Contig Length", "Read Count", "Species"])
+    writer.writerow(["Contig Name", "Contig Length", "Read Count", "Species", "E value"])
     for l in results:
         writer.writerows([l])
 
