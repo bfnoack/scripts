@@ -1,0 +1,32 @@
+#this is a overall summary script for KLAST data
+import csv
+import os
+import re
+from collections import defaultdict
+import ntpath
+from sys import argv
+
+target = []
+reader = csv.DictReader(open(argv[1], 'r'), delimiter=',')
+for row in reader:
+        if 'grapevine' == row['Hit Definition']:
+                target.append(row)
+        print target
+#with open(argv[1], 'r') as f:
+
+       for line in csv.reader(f):      
+               contig_name = line[0]
+               contig_length = line[3]
+               read_count = line[4]
+               hit_def = line[6]
+
+               try:
+                       pattern = r'.\[(.*?)\].'
+                       hit_sub = re.search(pattern, hit_def).group(1)
+                       print hit_sub
+
+              except AttributeError:
+                       hit_sub = hit_def
+
+
+                       target.append([hit_sub])
